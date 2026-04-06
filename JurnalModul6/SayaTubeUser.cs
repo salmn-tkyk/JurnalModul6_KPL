@@ -10,19 +10,21 @@ public class SayaTubeUser
 
     public SayaTubeUser(string username)
     {
+        Debug.Assert(username != null && username.Length <= 100);
         this.Username = username;
         this.uploadedVideos = new List<SayaTubeVideo>();
     }
 
     public void AddVideo(SayaTubeVideo video)
     {
+        Debug.Assert(video != null && video.playCount < int.MaxValue);
         uploadedVideos.Add(video);
     }
 
     public void PrintAllVideoPlaycount()
     {
         Console.WriteLine($"User: {Username}");
-        for (int i = 0; i < Math.Min(uploadedVideos.Count, 10); i++)
+        for (int i = 0; i < Math.Min(uploadedVideos.Count, 8); i++)
         {
             Console.WriteLine($"Video {i + 1} judul: {uploadedVideos[i].title}");
         }
